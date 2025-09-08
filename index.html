@@ -1,212 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>G‑Sports | Reservation information</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --brand: #1f7a42;      /* main green */
-        --brand-200: #dff5e8;  /* light tint */
-        --ok: #1f7a42;
-        --text: #1f2937;
-        --muted: #6b7280;
-        --bg: #f6f8fb;
-        --card: #ffffff;
-        --line: #e5e7eb;
-        --shadow: 0 10px 30px rgba(0,0,0,.06);
-        --radius: 18px;
-      }
-      * { box-sizing: border-box; }
-      html, body { height: 100%; }
-      body {
-        margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-        color: var(--text); background: var(--bg);
-      }
-      .container { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>G-Sports | Reservation information</title>
 
-      /* Header */
-      .brand { display:flex; align-items:center; gap:14px; }
-      .logo {
-        width: 62px; height: 62px; display:grid; place-items:center; border-radius: 50%; background: var(--brand-200);
-      }
-      .logo svg { width: 38px; height: 38px; fill: var(--brand); }
-      .brand-text { line-height:1.05; }
-      .brand-title { font-weight: 800; letter-spacing:.5px; font-size: 28px; }
-      .brand-sub { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .15em; }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 
-      h1.title { margin: 18px 0 4px; font-size: 34px; }
-      p.subtitle { margin: 0 0 16px; color: var(--muted); }
+  <style>
+    :root{
+      --page-bg: #efefef;
+      --card-bg: #ffffff;
+      --muted: #6b6b6b;
+      --line: #e1e1e1;
+      --brand-green: #1f8a58;   /* dark green */
+      --neon-green: #8ff29a;    /* displayed neon for time/values */
+    }
 
-      .stamp {
-        display: inline-flex; align-items:center; gap:10px; padding: 12px 16px; border-radius: 12px;
-        background: #111; color:#d1fae5; box-shadow: var(--shadow);
-      }
-      .stamp time { font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 600; letter-spacing:.5px; }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--page-bg);
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-      /* Card */
-      .card {
-        margin-top: 18px; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-        overflow: hidden; border: 1px solid var(--line);
-      }
-      .table { display:grid; grid-template-columns: 240px 1fr; }
-      .row { display: contents; }
-      .cell { padding: 18px 20px; border-top: 1px solid var(--line); }
-      .cell.label { background: #fafafa; color: #111827; font-weight: 600; }
-      .cell.value { background: #fff; }
+    /* center narrow mobile-style card like your screenshot */
+    .wrap{
+      max-width:480px;           /* adjust for desktop */
+      margin:26px auto;
+      padding:16px;
+    }
 
-      .pill { display:inline-block; padding: 6px 10px; border-radius: 999px; font-weight:700; font-size: 14px; }
-      .pill.ok { background: var(--brand-200); color: var(--ok); }
+    .card{
+      background:var(--card-bg);
+      border-radius:6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      border:1px solid #ddd;
+      padding:22px 18px 28px;
+    }
 
-      .time { color: #0a0; font-weight: 700; }
+    /* logo centered */
+    header { text-align:center; margin-bottom:6px; }
+    header img { max-width:160px; display:block; margin:0 auto 6px; }
 
-      /* requester */
-      .requester { display:flex; align-items:center; gap:14px; }
-      .avatar { width: 86px; height: 86px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); }
-      .req-name { font-weight: 700; font-size: 18px; }
-      .req-sub { color: var(--muted); font-size: 14px; }
+    h1{
+      margin:6px 0 6px;
+      font-size:30px;
+      letter-spacing:0.2px;
+      font-weight:700;
+    }
+    .subtitle{
+      margin:0 0 12px;
+      font-size:19px;
+      color:var(--muted);
+      font-weight:600;
+    }
 
-      /* Footer bar */
-      .footer { display:flex; justify-content: space-between; align-items:center; padding: 14px 20px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 13px; }
+    /* timestamp box */
+    .stamp{
+      display:block;
+      width:100%;
+      text-align:center;
+      background:#8a8a8a;
+      padding:12px 10px;
+      border-radius:2px;
+      margin:14px 0 18px;
+    }
+    .stamp .time{
+      font-family: "Roboto Mono", monospace;
+      font-size:20px;
+      color:var(--neon-green);
+      letter-spacing:1px;
+      font-weight:600;
+    }
 
-      /* Responsive */
-      @media (max-width: 720px) {
-        .table { grid-template-columns: 1fr; }
-        .cell.label { border-top: 1px solid var(--line); background: #fff; color: var(--muted); font-weight:600; }
-        .cell.value { padding-top: 6px; }
-        .avatar { width: 64px; height: 64px; }
-        .brand-title { font-size: 22px; }
-        h1.title { font-size: 26px; }
-      }
+    /* Info table similar to screenshot */
+    table.info{
+      width:100%;
+      border-collapse:collapse;
+      table-layout:fixed;
+      font-size:15px;
+    }
+    table.info td, table.info th{
+      padding:14px 14px;
+      border:1px solid var(--line);
+      vertical-align:middle;
+    }
+    table.info .label{
+      width:36%;
+      font-weight:700;
+      background: #fafafa;
+      color:#222;
+    }
+    table.info .value{
+      width:64%;
+      font-weight:400;
+      color:#222;
+    }
 
-      /* Print */
-      @media print {
-        body { background: #fff; }
-        .card { box-shadow: none; }
-        .stamp { background: #e8f9ef; color: #000; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Top brand banner -->
-      <div class="brand" role="banner">
-        <div class="logo" aria-hidden="true">
-          <!-- Simple placeholder emblem -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm4.6 14.2a7.5 7.5 0 0 1-9.9-9.9 5 5 0 0 0 6.9 6.9 5.5 5.5 0 0 0 3 3Z"/>
-          </svg>
-        </div>
-        <div class="brand-text">
-          <div class="brand-title">GITAM</div>
-          <div class="brand-sub">Deemed to be University</div>
-        </div>
+    /* green emphasis for date/slot/status as in photo */
+    .value.green { color: var(--brand-green); font-weight:700; }
+
+    /* Requester row: image + name */
+    .requester{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .avatar{
+      width:110px;
+      height:120px;
+      object-fit:cover;
+      border-radius:4px;
+      border:1px solid var(--line);
+      background:#f2f2f2;
+    }
+    .req-name{
+      font-weight:700;
+      font-size:16px;
+      letter-spacing:0.3px;
+      color:#111;
+      word-break:break-word;
+    }
+
+    /* small footer bar under table (like bottom grey line) */
+    .bottom-gap{ height:8px; }
+
+    /* responsive tweaks */
+    @media (max-width:420px){
+      .avatar{ width:90px; height:100px; }
+      .stamp .time{ font-size:18px; }
+      h1{ font-size:26px; }
+      .subtitle{ font-size:16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <!-- logo: replace assets/logo.png with your uploaded file -->
+      <header>
+        <img src="assets/logo.png" alt="GITAM logo" />
+      </header>
+
+      <h1>G-Sports</h1>
+      <div class="subtitle">Reservation information</div>
+
+      <!-- timestamp exactly like the photo -->
+      <div class="stamp" aria-hidden="true">
+        <div class="time">2025-AUG-23&nbsp;&nbsp;&nbsp;17:02:57</div>
       </div>
 
-      <h1 class="title">G‑Sports</h1>
-      <p class="subtitle">Reservation information</p>
+      <!-- Info table -->
+      <table class="info" role="table" aria-label="Reservation details">
+        <tr>
+          <td class="label">Ref. number</td>
+          <td class="value">20250822832051</td>
+        </tr>
 
-      <div class="stamp" aria-live="polite">
-        <time id="now">2025-AUG-23 17:02:57</time>
-      </div>
+        <tr>
+          <td class="label">Reserved date</td>
+          <td class="value green">2025-Aug-23</td>
+        </tr>
 
-      <!-- Reservation card -->
-      <section class="card" aria-label="Reservation details">
-        <div class="table" role="table" aria-label="Details">
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Ref. number</div>
-            <div class="cell value" role="cell">20250822832051</div>
-          </div>
+        <tr>
+          <td class="label">Reserved slot</td>
+          <td class="value green">03:00 PM to 04:00 PM</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Reserved date</div>
-            <div class="cell value" role="cell">2025‑Aug‑23</div>
-          </div>
+        <tr>
+          <td class="label">Status</td>
+          <td class="value green">Approved</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Reserved slot</div>
-            <div class="cell value" role="cell"><strong>03:00 PM</strong> to <strong>04:00 PM</strong></div>
-          </div>
+        <tr>
+          <td class="label">Stadium</td>
+          <td class="value">Fitness &amp; Performance Centre</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Status</div>
-            <div class="cell value" role="cell"><span class="pill ok">Approved</span></div>
-          </div>
+        <tr>
+          <td class="label">Facility</td>
+          <td class="value">Fitness &amp; Performance Centre</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Stadium</div>
-            <div class="cell value" role="cell">Fitness &amp; Performance Centre</div>
-          </div>
+        <tr>
+          <td class="label">Court</td>
+          <td class="value">room 1</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Facility</div>
-            <div class="cell value" role="cell">Fitness &amp; Performance Centre</div>
-          </div>
-
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Court</div>
-            <div class="cell value" role="cell">room 1</div>
-          </div>
-
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Requester</div>
-            <div class="cell value" role="cell">
-              <div class="requester">
-                <!-- Replace the src with your photo file placed in an /assets folder -->
-                <img class="avatar" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=500&auto=format&fit=crop" alt="Requester photo" />
-                <div>
-                  <div class="req-name">YOUR NAME</div>
-                  <div class="req-sub">(Student)</div>
-                </div>
-              </div>
+        <tr>
+          <td class="label">Requester</td>
+          <td class="value">
+            <div class="requester">
+              <!-- make sure assets/photo.jpg exists (upload your photo) -->
+              <img class="avatar" src="assets/photo.jpg" alt="Requester photo">
+              <div class="req-name">KOKKILIGADDA SAVANTH</div>
             </div>
-          </div>
+          </td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Request from</div>
-            <div class="cell value" role="cell">VSP – GIT – CSE</div>
-          </div>
+        <tr>
+          <td class="label">Request from</td>
+          <td class="value">VSP - GIT - CSE</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Mobile</div>
-            <div class="cell value" role="cell">7893705875</div>
-          </div>
+        <tr>
+          <td class="label">Mobile</td>
+          <td class="value">7893705875</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">E‑mail</div>
-            <div class="cell value" role="cell">you@example.com</div>
-          </div>
+        <tr>
+          <td class="label">E-mail</td>
+          <td class="value">skokkili@gitam.in</td>
+        </tr>
 
-          <div class="row" role="row">
-            <div class="cell label" role="rowheader">Remarks</div>
-            <div class="cell value" role="cell"><span class="pill ok">Approved</span></div>
-          </div>
-        </div>
-        <div class="footer">
-          <span>Generated by G‑Sports</span>
-          <span>Ref: <strong>R‑1.0</strong></span>
-        </div>
-      </section>
+        <tr>
+          <td class="label">Remarks</td>
+          <td class="value green">Approved</td>
+        </tr>
+      </table>
+
+      <div class="bottom-gap"></div>
     </div>
-
-    <script>
-      // Live timestamp in the exact style: 2025-AUG-23 17:02:57
-      function formatStamp(d) {
-        const year = d.getFullYear();
-        const month = d.toLocaleString('en', { month: 'short' }).toUpperCase();
-        const day = String(d.getDate()).padStart(2, '0');
-        const hh = String(d.getHours()).padStart(2, '0');
-        const mm = String(d.getMinutes()).padStart(2, '0');
-        const ss = String(d.getSeconds()).padStart(2, '0');
-        return `${year}-${month}-${day} ${hh}:${mm}:${ss}`;
-      }
-      const nowEl = document.getElementById('now');
-      function tick(){ nowEl.textContent = formatStamp(new Date()); }
-      tick();
-      setInterval(tick, 1000);
-    </script>
-  </body>
+  </div>
+</body>
 </html>
+

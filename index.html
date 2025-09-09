@@ -1,233 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>G-Sports | Reservation information</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G-Sports Reservation</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root{
-      --page-bg: #efefef;
-      --card-bg: #ffffff;
-      --muted: #6b6b6b;
-      --line: #e1e1e1;
-      --brand-green: #1f8a58;   /* dark green */
-      --neon-green: #8ff29a;    /* displayed neon for time/values */
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--page-bg);
-      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      color:#222;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    /* center narrow mobile-style card like your screenshot */
-    .wrap{
-      max-width:480px;           /* adjust for desktop */
-      margin:26px auto;
-      padding:16px;
-    }
-
-    .card{
-      background:var(--card-bg);
-      border-radius:6px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      border:1px solid #ddd;
-      padding:22px 18px 28px;
-    }
-
-    /* logo centered */
-    header { text-align:center; margin-bottom:6px; }
-    header img { max-width:160px; display:block; margin:0 auto 6px; }
-
-    h1{
-      margin:6px 0 6px;
-      font-size:30px;
-      letter-spacing:0.2px;
-      font-weight:700;
-    }
-    .subtitle{
-      margin:0 0 12px;
-      font-size:19px;
-      color:var(--muted);
-      font-weight:600;
-    }
-
-    /* timestamp box */
-    .stamp{
-      display:block;
-      width:100%;
-      text-align:center;
-      background:#8a8a8a;
-      padding:12px 10px;
-      border-radius:2px;
-      margin:14px 0 18px;
-    }
-    .stamp .time{
-      font-family: "Roboto Mono", monospace;
-      font-size:20px;
-      color:var(--neon-green);
-      letter-spacing:1px;
-      font-weight:600;
-    }
-
-    /* Info table similar to screenshot */
-    table.info{
-      width:100%;
-      border-collapse:collapse;
-      table-layout:fixed;
-      font-size:15px;
-    }
-    table.info td, table.info th{
-      padding:14px 14px;
-      border:1px solid var(--line);
-      vertical-align:middle;
-    }
-    table.info .label{
-      width:36%;
-      font-weight:700;
-      background: #fafafa;
-      color:#222;
-    }
-    table.info .value{
-      width:64%;
-      font-weight:400;
-      color:#222;
-    }
-
-    /* green emphasis for date/slot/status as in photo */
-    .value.green { color: var(--brand-green); font-weight:700; }
-
-    /* Requester row: image + name */
-    .requester{
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
-    .avatar{
-      width:110px;
-      height:120px;
-      object-fit:cover;
-      border-radius:4px;
-      border:1px solid var(--line);
-      background:#f2f2f2;
-    }
-    .req-name{
-      font-weight:700;
-      font-size:16px;
-      letter-spacing:0.3px;
-      color:#111;
-      word-break:break-word;
-    }
-
-    /* small footer bar under table (like bottom grey line) */
-    .bottom-gap{ height:8px; }
-
-    /* responsive tweaks */
-    @media (max-width:420px){
-      .avatar{ width:90px; height:100px; }
-      .stamp .time{ font-size:18px; }
-      h1{ font-size:26px; }
-      .subtitle{ font-size:16px; }
+    .timestamp {
+      text-align: center;
+      background: #444;
+      color: #32cd32; /* green text */
+      font-weight: bold;
+      font-family: monospace;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
+  <div class="container">
+    <a href="#" class="back-link">← Back</a>
 
-      <!-- logo: replace assets/logo.png with your uploaded file -->
-      <header>
-        <img src="assets/logo.png" alt="GITAM logo" />
-      </header>
+    <div class="logo">GITAM<br><span class="tagline">DEEMED TO BE UNIVERSITY</span></div>
+    <h2>G-Sports</h2>
+    <h3>Reservation information</h3>
 
-      <h1>G-Sports</h1>
-      <div class="subtitle">Reservation information</div>
+    <!-- Live Timer (moved below heading) -->
+    <div class="timestamp" id="live-timer"></div>
 
-      <!-- timestamp exactly like the photo -->
-      <div class="stamp" aria-hidden="true">
-        <div class="time">2025-AUG-23&nbsp;&nbsp;&nbsp;17:02:57</div>
-      </div>
-
-      <!-- Info table -->
-      <table class="info" role="table" aria-label="Reservation details">
-        <tr>
-          <td class="label">Ref. number</td>
-          <td class="value">20250822832051</td>
-        </tr>
-
-        <tr>
-          <td class="label">Reserved date</td>
-          <td class="value green">2025-Aug-23</td>
-        </tr>
-
-        <tr>
-          <td class="label">Reserved slot</td>
-          <td class="value green">03:00 PM to 04:00 PM</td>
-        </tr>
-
-        <tr>
-          <td class="label">Status</td>
-          <td class="value green">Approved</td>
-        </tr>
-
-        <tr>
-          <td class="label">Stadium</td>
-          <td class="value">Fitness &amp; Performance Centre</td>
-        </tr>
-
-        <tr>
-          <td class="label">Facility</td>
-          <td class="value">Fitness &amp; Performance Centre</td>
-        </tr>
-
-        <tr>
-          <td class="label">Court</td>
-          <td class="value">room 1</td>
-        </tr>
-
-        <tr>
-          <td class="label">Requester</td>
-          <td class="value">
-            <div class="requester">
-              <!-- make sure assets/photo.jpg exists (upload your photo) -->
-              <img class="avatar" src="assets/photo.jpg" alt="Requester photo">
-              <div class="req-name">KOKKILIGADDA SAVANTH</div>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="label">Request from</td>
-          <td class="value">VSP - GIT - CSE</td>
-        </tr>
-
-        <tr>
-          <td class="label">Mobile</td>
-          <td class="value">7893705875</td>
-        </tr>
-
-        <tr>
-          <td class="label">E-mail</td>
-          <td class="value">skokkili@gitam.in</td>
-        </tr>
-
-        <tr>
-          <td class="label">Remarks</td>
-          <td class="value green">Approved</td>
-        </tr>
-      </table>
-
-      <div class="bottom-gap"></div>
-    </div>
+    <table>
+      <tr><td>Ref. number</td><td>20250707545462</td></tr>
+      <tr><td>Stadium</td><td>Fitness & Performance Centre</td></tr>
+      <tr><td>Facility</td><td>Fitness & Performance Centre</td></tr>
+      <tr><td>Court</td><td>room 1</td></tr>
+      <tr>
+        <td>Requester</td>
+        <td class="profile-cell">
+          <img src="your-photo.jpg" alt="Profile Photo" class="profile-pic" />
+          <div>
+            <strong>PASUMARTHI</strong><br />
+            YATHENDRA KUMAR (2023000495 - student)
+          </div>
+        </td>
+      </tr>
+      <tr><td>Request from</td><td>VSP - GIT - CSE</td></tr>
+      <tr><td>Mobile</td><td>8977602969</td></tr>
+      <tr><td>E-mail</td><td>ypasumar@gitam.in</td></tr>
+      <tr><td>Reserved date</td><td>09-Sep-2025</td></tr>
+      <tr><td>Reserved slot</td><td>06:00 AM to 07:00 AM</td></tr>
+      <tr><td>Status</td><td class="approved">Approved</td></tr>
+      <tr><td>Remarks</td><td class="approved">Approved</td></tr>
+    </table>
   </div>
+
+  <script>
+    function updateTimer() {
+      const now = new Date();
+
+      // Format date as YYYY-MMM-DD
+      const year = now.getFullYear();
+      const month = now.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+      const day = String(now.getDate()).padStart(2, '0');
+
+      // Format time as HH:MM:SS
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      const formatted = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      document.getElementById("live-timer").textContent = formatted;
+    }
+
+    // Update every second
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
 </body>
 </html>
-
